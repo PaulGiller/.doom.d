@@ -69,7 +69,7 @@
       ;make              ; run make tasks from Emacs
       magit              ;
       ;password-store    ; password manager for nerds
-      ;pdf               ; pdf enhancements
+      pdf               ; pdf enhancements
       ;prodigy           ; XFIXME managing external services & code builders
       ;rgb               ; creating color strings
       ;tmux              ; an API for interacting with tmux
@@ -82,7 +82,7 @@
        clojure            ; java with a lisp
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
-      ;csharp            ; unity, .NET, and mono shenanigans
+      csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
       ;erlang            ; an elegant language for a more civilized age
       ;elixir            ; erlang done right
@@ -112,7 +112,7 @@
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
-      ;python            ; beautiful is better than ugly
+      python            ; beautiful is better than ugly
       ;qt                ; the 'cutest' gui framework ever
       ;racket            ; a DSL for DSLs
        rest              ; Emacs as a REST client
