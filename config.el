@@ -1,8 +1,13 @@
 ;;; ~/.doom.d/config.el -*- lexical-binding: t; -*-
 ;; Example: https://gist.github.com/hjertnes/9d1ceecb403b3bad1764b41c4ca284b7
 ;;; Code:
+
+(def-package! ace-jump-mode)
+
 (when (featurep! :feature evil)
   (load! "bindings"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; mu4e config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! mu4e
   (setq mu4e-maildir            "~/Maildir"
@@ -32,10 +37,24 @@
                                   ("/[Google Mail].Trash"       . ?t)
                                   ("/[Google Mail].All Mail"    . ?a))))
 
-  (defun htmlize-before-send ()
-    "When in an org-mu4e-compose-org-mode message, htmlize it."
-    (when (member 'org~mu4e-mime-switch-headers-or-body post-command-hook)
-      (message-mode)
-      (org-mime-htmlize)))
+(defun htmlize-before-send ()
+  "When in an org-mu4e-compose-org-mode message, htmlize it."
+  (when (member 'org~mu4e-mime-switch-headers-or-body post-command-hook)
+    (message-mode)
+    (org-mime-htmlize)))
 
-  (advice-add 'message-send-and-exit :before 'htmlize-before-send)
+(advice-add 'message-send-and-exit :before 'htmlize-before-send)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun kill-all-java ()
+  (interactive)
+  (shell-command "wmic process where \"name like '%java%'\" delete"))
+
+;; (after! clojure-mode
+;;   (ace-jump-mode))
+;;   (add-hook! 'clojure-mode-hook
+;;     (setq nlinum-highlight-current-line nil)))
+
+
+
