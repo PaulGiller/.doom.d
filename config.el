@@ -55,8 +55,6 @@
   (paredit-mode)
   (set-popup-rule! "^\\*cider-repl" :quit 'current :select nil :width 85 :side 'right :slot 1)
   (set-popup-rule! "^\\*cider-error" :quit 'current :select t :height 0.5 :side 'right :slot 2))
-;;   (add-hook! 'clojure-mode-hook
-;;     (setq nlinum-highlight-current-line nil)))
 
 
 
