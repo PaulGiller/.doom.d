@@ -72,11 +72,9 @@
  (set-popup-rule! "^\\*org-brain" :ignore t)
  (map! :map org-brain-visualize-mode-map
           :n  "<tab>"   #'forward-button
-          :localleader
           :n  "m"     #'org-brain-visualize-mind-map
           :n  "j"     #'forward-button
           :n  "k"     #'backward-button
-          :n  "S-TAB" #'backward-button
           :n  "h"     #'org-brain-new-child
           :n  "c"     #'org-brain-add-child
           :n  "C"     #'org-brain-remove-child
@@ -85,8 +83,18 @@
           :n  "f"     #'org-brain-add-friendship
           :n  "F"     #'org-brain-remove-friendship
           :n  "n"     #'org-brain-pin
-
-          :n  "l"     #'org-brain-add-resource))
+          :n  "t"     #'org-brain-set-title
+          :n  "T"     #'org-brain-set-tags
+          :n  "d"     #'org-brain-delete-entry
+          :n  "l"     #'org-brain-add-resource
+          :n  "C-y"   #'org-brain-visualize-paste-resource
+          :n  "a"     #'org-brain-visualize-attach
+          :n  "A"     #'org-brain-archive
+          :n  "o"     #'org-brain-goto-current
+          :n  "O"     #'org-brain-goto
+          :n  "v"     #'org-brain-visualize
+          :n  "r"     #'org-brain-visualize-random
+          :n  "R"     #'org-brain-visualize-wander))
 
 (after! org-brain
   (def-package! org-cliplink)
