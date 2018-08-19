@@ -94,6 +94,7 @@
           :n  "o"     #'org-brain-goto-current
           :n  "O"     #'org-brain-goto
           :n  "v"     #'org-brain-visualize
+          :n  "V"     #'revert-buffer
           :n  "r"     #'org-brain-visualize-random
           :n  "R"     #'org-brain-visualize-wander))
 
