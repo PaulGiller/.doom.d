@@ -3,3 +3,5 @@
 (package! org-mime)
 (package! ace-jump-mode)
 (package! org-brain)
+(package! org-cliplink)
+(package! ascii-art-to-unicode)

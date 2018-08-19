@@ -68,3 +68,8 @@
  (setq org-brain-visualize-default-choices 'all)
  (setq org-brain-title-max-length 12)
  (set-popup-rule! "^\\*org-brain" :ignore t))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(after! org-brain
+  (add-hook! 'org-brain-after-visualize-hook #'aa2u-buffer))
