@@ -75,6 +75,7 @@
           :n  "m"     #'org-brain-visualize-mind-map
           :n  "j"     #'forward-button
           :n  "k"     #'backward-button
+          :n  "b"     #'org-brain-visualize-back
           :n  "h"     #'org-brain-new-child
           :n  "c"     #'org-brain-add-child
           :n  "C"     #'org-brain-remove-child
