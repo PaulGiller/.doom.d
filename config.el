@@ -54,6 +54,8 @@
  (set-popup-rule! "^\\*cider-repl" :quit 'current :select nil :width 85 :side 'right :slot 1)
  (set-popup-rule! "^\\*cider-error" :quit 'current :select t :height 0.5 :side 'right :slot 2))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (def-package! org-brain; :ensure t
  :init
  (setq org-brain-path "~/org/brain")
@@ -68,8 +70,6 @@
  (setq org-brain-visualize-default-choices 'all)
  (setq org-brain-title-max-length 12)
  (set-popup-rule! "^\\*org-brain" :ignore t))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! org-brain
   (add-hook! 'org-brain-after-visualize-hook #'aa2u-buffer))
