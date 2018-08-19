@@ -56,11 +56,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def-package! org-brain; :ensure t
+(def-package! org-brain
  :init
  (setq org-brain-path "~/org/brain")
  ;; For Evil users (with-eval-after-load 'evil
-   (evil-set-initial-state 'org-brain-visualize-mode 'emacs)
+  ; (evil-set-initial-state 'org-brain-visualize-mode 'emacs)
  :config
  (setq org-id-track-globally t)
  (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
@@ -68,8 +68,26 @@
          "* %i%?" :empty-lines 1)
        org-capture-templates)
  (setq org-brain-visualize-default-choices 'all)
- (setq org-brain-title-max-length 12)
- (set-popup-rule! "^\\*org-brain" :ignore t))
+ (setq org-brain-title-max-length 35)
+ (set-popup-rule! "^\\*org-brain" :ignore t)
+ (map! :map org-brain-visualize-mode-map
+          :n  "<tab>"   #'forward-button
+          :localleader
+          :n  "m"     #'org-brain-visualize-mind-map
+          :n  "j"     #'forward-button
+          :n  "k"     #'backward-button
+          :n  "S-TAB" #'backward-button
+          :n  "h"     #'org-brain-new-child
+          :n  "c"     #'org-brain-add-child
+          :n  "C"     #'org-brain-remove-child
+          :n  "p"     #'org-brain-add-parent
+          :n  "P"     #'org-brain-remove-parent
+          :n  "f"     #'org-brain-add-friendship
+          :n  "F"     #'org-brain-remove-friendship
+          :n  "n"     #'org-brain-pin
+
+          :n  "l"     #'org-brain-add-resource))
 
 (after! org-brain
+  (def-package! org-cliplink)
   (add-hook! 'org-brain-after-visualize-hook #'aa2u-buffer))
