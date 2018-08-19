@@ -2,7 +2,6 @@
 
 (map!
  :gnvime "C-<f1>" #'ace-jump-mode
- :gnvime "C-M-;" #'comment-region
  :leader
       (:desc "open" :prefix "o"
        :desc "Mail" :n "m" #'=email
