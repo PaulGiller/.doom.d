@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
 (map!
- :gnvime "C-c <left>"  #'winner-undo
+ :gnvime "C-c <left>"  #'winner-undo
  :gnvime "C-c <right>" #'winner-redo
  :gnvime "C-<f1>"  #'ace-jump-mode
  :leader
