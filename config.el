@@ -48,11 +48,15 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure config ;;;;;;;;;;;;;;;;;;;;;;
 
 (after! clojure-mode
+ (sp-use-smartparens-bindings)
  (add-hook! 'clojure-mode-hook
   (smartparens-strict-mode)
+  (define-clojure-indent
+    (check-let 2))
   (setq cljr-warn-on-eval nil))
  (set-popup-rule! "^\\*cider-repl" :quit 'current :select nil :width 85 :side 'right :slot 1)
- (set-popup-rule! "^\\*cider-error" :quit 'current :select t :height 0.5 :side 'right :slot 2))
+ (set-popup-rule! "^\\*cider-error" :quit 'current :select t :width 85 :height 0.5 :side 'right :slot 2)
+ (set-popup-rule! "^\\*cider-test" :quit 'current :select t :width 85 :height 0.25 :side 'right :slot 3))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,6 +77,7 @@
  (map! :map org-brain-visualize-mode-map
           :n  "<tab>"   #'forward-button
           :n  "m"     #'org-brain-visualize-mind-map
+          :n  "M"     #'org-brain-agenda
           :n  "j"     #'forward-button
           :n  "k"     #'backward-button
           :n  "b"     #'org-brain-visualize-back
