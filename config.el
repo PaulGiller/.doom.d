@@ -3,10 +3,21 @@
 ;;; Code:
 
 (def-package! ace-jump-mode)
+(def-package! autodisass-java-bytecode)
 
 (when (featurep! :feature evil)
   (load! "bindings"))
 
+(after! ace-window
+  (setq aw-scope 'global))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org mode ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq org-agenda-span 14)
+;;
+;; Reveal.js + Org mode
+(require 'ox-reveal)
+(setq org-reveal-root "file:///c:/users/pg50466/repos/reveal.js")
+(setq org-reveal-title-slide nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; mu4e config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (after! mu4e
@@ -48,61 +59,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; Clojure config ;;;;;;;;;;;;;;;;;;;;;;
 
 (after! clojure-mode
- (sp-use-smartparens-bindings)
  (add-hook! 'clojure-mode-hook
-  (smartparens-strict-mode)
+  (paredit-mode)
   (define-clojure-indent
     (check-let 2))
-  (setq cljr-warn-on-eval nil))
+  (setq cljr-warn-on-eval nil)
+  (setq treemacs-silent-refresh t))
+
  (set-popup-rule! "^\\*cider-repl" :quit 'current :select nil :width 85 :side 'right :slot 1)
  (set-popup-rule! "^\\*cider-error" :quit 'current :select t :width 85 :height 0.5 :side 'right :slot 2)
  (set-popup-rule! "^\\*cider-test" :quit 'current :select t :width 85 :height 0.25 :side 'right :slot 3))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;; Org Brain ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(def-package! org-brain
- :init
- (setq org-brain-path "~/org/brain")
- ;; For Evil users (with-eval-after-load 'evil
-  ; (evil-set-initial-state 'org-brain-visualize-mode 'emacs)
- :config
- (setq org-id-track-globally t)
- (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
- (push '("b" "Brain" plain (function org-brain-goto-end)
-         "* %i%?" :empty-lines 1)
-       org-capture-templates)
- (setq org-brain-visualize-default-choices 'all)
- (setq org-brain-title-max-length 35)
- (set-popup-rule! "^\\*org-brain" :ignore t)
- (map! :map org-brain-visualize-mode-map
-          :n  "<tab>"   #'forward-button
-          :n  "m"     #'org-brain-visualize-mind-map
-          :n  "M"     #'org-brain-agenda
-          :n  "j"     #'forward-button
-          :n  "k"     #'backward-button
-          :n  "b"     #'org-brain-visualize-back
-          :n  "h"     #'org-brain-new-child
-          :n  "c"     #'org-brain-add-child
-          :n  "C"     #'org-brain-remove-child
-          :n  "p"     #'org-brain-add-parent
-          :n  "P"     #'org-brain-remove-parent
-          :n  "f"     #'org-brain-add-friendship
-          :n  "F"     #'org-brain-remove-friendship
-          :n  "n"     #'org-brain-pin
-          :n  "t"     #'org-brain-set-title
-          :n  "T"     #'org-brain-set-tags
-          :n  "d"     #'org-brain-delete-entry
-          :n  "l"     #'org-brain-add-resource
-          :n  "C-y"   #'org-brain-visualize-paste-resource
-          :n  "a"     #'org-brain-visualize-attach
-          :n  "A"     #'org-brain-archive
-          :n  "o"     #'org-brain-goto-current
-          :n  "O"     #'org-brain-goto
-          :n  "v"     #'org-brain-visualize
-          :n  "V"     #'revert-buffer
-          :n  "r"     #'org-brain-visualize-random
-          :n  "R"     #'org-brain-visualize-wander))
-
-(after! org-brain
-  (def-package! org-cliplink)
-  (add-hook! 'org-brain-after-visualize-hook #'aa2u-buffer))
